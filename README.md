@@ -15,6 +15,21 @@ To run this example you need to execute:
   $ terraform apply
   
 
+```
+# Directory structure
+
+├── .github
+│   └── workflows
+│       └── cicd.yml
+├── terraform
+│   ├── main.tf
+│   ├── variables.tf
+│   └── cloudwatch.tf
+├── Dockerfile
+└── README.md
+```
+
+
 Step 2: Dockerfile Creation
 
 Create a Dockerfile in the root of your Node.js application directory. This file will define how to build your Docker image.
@@ -33,7 +48,7 @@ Step 4: Managing Secrets
 
 GitHub Secrets should be used to securely store sensitive information such as AWS credentials, Docker registry details, etc. These secrets can be added in the repository settings under the "Secrets" section.
 
-Add the following secrets to your GitHub repository: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, DOCKER_USERNAME, DOCKER_PASSWORD
+Add the following secrets to your GitHub repository: ``` AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, DOCKER_USERNAME, DOCKER_PASSWORD ```
 
 Step 5: Deploying to ECS and Setting Up CloudWatch Monitoring
 
@@ -49,9 +64,11 @@ Create CloudWatch Dashboards :
 
 Go to CloudWatch: Open the CloudWatch console. Dashboards: Click on "Dashboards" in the left-hand menu. Click “Create dashboard”: Enter a name for your dashboard.
 
-Add Widgets: You can add different types of widgets (e.g., graphs, numbers, text) to visualize various metrics. 
-Add Graphs: Choose “Add widget”, select “Line” or “Stacked area” graph to visualize metrics like CPU utilization, disk I/O, etc. 
-Add Numbers: Show metrics like average response time or error rates.
+> Add Widgets: You can add different types of widgets (e.g., graphs, numbers, text) to visualize various metrics.
+> 
+> Add Graphs: Choose “Add widget”, select “Line” or “Stacked area” graph to visualize metrics like CPU utilization, disk I/O, etc.
+> 
+> Add Numbers: Show metrics like average response time or error rates.
 
 Configure Widgets: Select metrics from your AWS resources (EC2, RDS, Lambda, etc.) and customize the display settings. After configuring the widgets, click “Save changes” to save the dashboard.
 
@@ -59,9 +76,9 @@ Set Up CloudWatch Alarms :
 
 Open CloudWatch Console. Here’s a setting of a CloudWatch alarm for high CPU utilization: Metric: Select EC2 and then Per-Instance Metrics.
 
-Metric Name: Choose CPU Utilization. Conditions: Set “Threshold type” to “Static” and “Whenever CPU Utilization is” greater than 80.
+> Metric Name: Choose CPU Utilization. Conditions: Set “Threshold type” to “Static” and “Whenever CPU Utilization is” greater than 80.
 
-Actions: Choose to send a notification to an SNS topic.
+> Actions: Choose to send a notification to an SNS topic.
 
 Go to the SNS console. Click “Create topic” and choose “Standard” as the type. Provide a name and configure subscriptions (e.g., email).
 
